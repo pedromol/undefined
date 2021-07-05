@@ -76,13 +76,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-staged"
+      "pre-commit": "yarn lint-staged --allow-empty"
     }
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   }
 }
