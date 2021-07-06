@@ -76,14 +76,10 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged --allow-empty"
-    }
-  },
   "lint-staged": {
     "src/**/*.ts": [
       "eslint --fix"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   }
 }
