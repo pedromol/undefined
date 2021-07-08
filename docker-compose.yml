@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  undefined:
+    container_name: undefined
+    build: .
+    ports:
+      - "8080:8080/tcp"
+    environment:
+      HTTP_PORT: '8080'
+    restart: unless-stopped
