@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { LoggerModule } from 'nestjs-pino';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './app.config';
@@ -9,6 +7,8 @@ import { Connection } from 'typeorm';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -32,10 +32,11 @@ import { UserModule } from './user/user.module';
         autoLoadEntities: true,
       }),
     }),
+    TerminusModule,
     UserModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [UserController, HealthController],
+  providers: [UserService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
