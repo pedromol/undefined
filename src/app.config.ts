@@ -4,6 +4,21 @@ export class EnvironmentVariables {
   @mustBe(a.number().integer().min(1).max(65535).required())
   HTTP_PORT: number;
 
+  @mustBe(a.string().required())
+  RDS_HOST: string;
+
+  @mustBe(a.number().integer().min(1).max(65535).required())
+  RDS_PORT: number;
+
+  @mustBe(a.string().required())
+  RDS_USERNAME: string;
+
+  @mustBe(a.string().required())
+  RDS_PASSWORD: string;
+
+  @mustBe(a.string().required())
+  RDS_DATABASE: string;
+
   constructor() {
     Object.keys(process.env).forEach((key) => {
       this[key] = process.env[key];

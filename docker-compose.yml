@@ -3,9 +3,26 @@ version: "3"
 services:
   undefined:
     container_name: undefined
+    depends_on: [db]
     build: .
     ports:
       - "8080:8080/tcp"
     environment:
       HTTP_PORT: '8080'
+      NODE_ENV: 'development'
+      RDS_HOST: 'db'
+      RDS_PORT: '3306'
+      RDS_USERNAME: 'root'
+      RDS_PASSWORD: 'localPassword'
+      RDS_DATABASE: 'undefined'
     restart: unless-stopped
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306/tcp"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: localPassword
+      MYSQL_DATABASE: undefined

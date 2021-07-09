@@ -2,8 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerModule } from 'nestjs-pino';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './app.config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import { UserService } from './user/user.service';
+import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -13,8 +18,25 @@ import configuration from './app.config';
       load: [configuration],
     }),
     LoggerModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'mysql',
+        host: configService.get('RDS_HOST'),
+        port: configService.get('RDS_PORT'),
+        username: configService.get('RDS_USERNAME'),
+        password: configService.get('RDS_PASSWORD'),
+        database: configService.get('RDS_DATABASE'),
+        synchronize: ['localhost', 'db'].includes(configService.get('RDS_HOST')) ? true : false,
+        autoLoadEntities: true,
+      }),
+    }),
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, UserController],
+  providers: [AppService, UserService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}
