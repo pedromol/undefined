@@ -3,7 +3,7 @@ version: "3"
 services:
   undefined:
     container_name: undefined
-    depends_on: [db]
+    depends_on: [db, redis]
     build: .
     ports:
       - "8080:8080/tcp"
@@ -15,6 +15,8 @@ services:
       RDS_USERNAME: 'root'
       RDS_PASSWORD: 'localPassword'
       RDS_DATABASE: 'undefined'
+      REDIS_HOST: 'redis'
+      REDIS_PORT: '6379'
     restart: unless-stopped
 
   db:
@@ -26,3 +28,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: localPassword
       MYSQL_DATABASE: undefined
+
+  redis:
+    image: "redis:alpine"
+    restart: unless-stopped
+    ports:
+        - "6379:6379"
