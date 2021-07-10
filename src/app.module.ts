@@ -3,7 +3,6 @@ import { LoggerModule } from 'nestjs-pino';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './app.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
@@ -12,6 +11,7 @@ import { HealthController } from './health/health.controller';
 import { HealthService } from './health/health.service';
 import * as redisStore from 'cache-manager-redis-store';
 import StaticLogger from './common/helpers/staticLogger';
+import Crash from './common/helpers/crash';
 
 @Module({
   imports: [
@@ -44,8 +44,12 @@ import StaticLogger from './common/helpers/staticLogger';
         port: configService.get('REDIS_PORT'),
         ttl: 0,
         retry_strategy: (options): number => {
-          StaticLogger.getLogger().error(options, undefined, 'CacheModule');
-          return options.attempt * 1000;
+          if (options.attempt > 10) {
+            Crash.logAndExit('CacheModule', options);
+          } else {
+            StaticLogger.getLogger().error(options, undefined, 'CacheModule');
+            return options.attempt * 1000;
+          }
         },
       }),
     }),
@@ -55,6 +59,4 @@ import StaticLogger from './common/helpers/staticLogger';
   controllers: [UserController, HealthController],
   providers: [UserService, HealthService],
 })
-export class AppModule {
-  constructor(private connection: Connection) {}
-}
+export class AppModule {}

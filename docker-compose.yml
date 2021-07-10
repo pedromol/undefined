@@ -8,15 +8,11 @@ services:
     ports:
       - "3000:3000/tcp"
     environment:
-      HTTP_PORT: "3000"
       NODE_ENV: "development"
       RDS_HOST: "db"
-      RDS_PORT: "3306"
       RDS_USERNAME: "root"
       RDS_PASSWORD: "localPassword"
-      RDS_DATABASE: "undefined"
       REDIS_HOST: "redis"
-      REDIS_PORT: "6379"
     restart: unless-stopped
 
   db:
@@ -31,7 +27,7 @@ services:
 
   redis:
     image: "redis:alpine"
-    command: ["redis-server", "--bind", "0.0.0.0"]
+    command: ["redis-server", "--protected-mode", "no", "--bind", "0.0.0.0"]
     ports:
         - "6379:6379/tcp"
     restart: unless-stopped
