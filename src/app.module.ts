@@ -11,6 +11,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health/health.controller';
 import { HealthService } from './health/health.service';
 import * as redisStore from 'cache-manager-redis-store';
+import StaticLogger from './common/helpers/staticLogger';
 
 @Module({
   imports: [
@@ -42,6 +43,10 @@ import * as redisStore from 'cache-manager-redis-store';
         host: configService.get('RDS_HOST'),
         port: configService.get('REDIS_PORT'),
         ttl: 0,
+        retry_strategy: (options): number => {
+          StaticLogger.getLogger().error(options, undefined, 'CacheModule');
+          return options.attempt * 1000;
+        },
       }),
     }),
     TerminusModule,
