@@ -48,12 +48,12 @@ $ yarn test:e2e
 $ yarn test:cov
 ```
 
-## TODO
+## To Do
 - &#9745; Basic TypeORM and Redis support
+- &#9744; Fix docker-composer Redis connection
 - &#9744; Fix unit tests using CacheManager
 - &#9744; Fix e2e test
 - &#9744; Setup minimum coverage
-- &#9744; Fix docker-composer Redis connection
 - &#9744; Implement basic CRUD
 - &#9744; Add OpenAPI/Swagger
 - &#9744; Create architecture diagram
