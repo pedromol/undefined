@@ -8,9 +8,8 @@
 
 ## Description
 
-  <p align="center">A <a href="https://nestjs.com/" target="blank">Nest</a> boilerplate with <a href="https://typeorm.io/" target="blank">TypeORM</a> and <a href="https://redis.io/" target="blank">Redis</a> <a href="https://docs.nestjs.com/techniques/caching" target="blank">Cache</a>
-   using <a href="https://www.docker.com/" target="blank">Docker</a> and <a href="https://docs.docker.com/compose/" target="blank">docker-compose</a>.</p>
-    <p align="center">
+  A <a href="https://nestjs.com/" target="blank">Nest</a> boilerplate with <a href="https://typeorm.io/" target="blank">TypeORM</a> and <a href="https://redis.io/" target="blank">Redis</a> <a href="https://docs.nestjs.com/techniques/caching" target="blank">Cache</a>
+   using <a href="https://www.docker.com/" target="blank">Docker</a> and <a href="https://docs.docker.com/compose/" target="blank">docker-compose</a>.
 
 ## Running the app with docker-compose
 ```bash
