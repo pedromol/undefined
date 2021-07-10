@@ -8,7 +8,7 @@ import Crash from './common/helpers/crash';
 import StaticLogger from './common/helpers/staticLogger';
 
 process.on('uncaughtException', (err) => {
-  Crash.logAndExit('UncaughtException', err, 1);
+  Crash.logAndExit('UncaughtException', err);
 });
 
 async function bootstrap(): Promise<void> {
@@ -21,7 +21,7 @@ async function bootstrap(): Promise<void> {
       return app.listen(config.get('HTTP_PORT'), '0.0.0.0');
     })
     .catch((err) => {
-      Crash.logAndExit('bootstrap', err, 1);
+      Crash.logAndExit('bootstrap', err);
     });
 }
 bootstrap();
