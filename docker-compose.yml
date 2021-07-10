@@ -26,8 +26,7 @@ services:
       MYSQL_DATABASE: undefined
 
   redis:
-    image: "redis:alpine"
-    command: ["redis-server", "--protected-mode", "no", "--bind", "0.0.0.0"]
+    image: redis:alpine
     ports:
         - "6379:6379/tcp"
     restart: unless-stopped

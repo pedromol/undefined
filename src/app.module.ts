@@ -40,7 +40,7 @@ import Crash from './common/helpers/crash';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         store: redisStore,
-        host: configService.get('RDS_HOST'),
+        host: configService.get('REDIS_HOST'),
         port: configService.get('REDIS_PORT'),
         ttl: 0,
         retry_strategy: (options): number => {
