@@ -49,15 +49,15 @@ $ yarn test:cov
 ```
 
 ## TODO
-- <input type="checkbox" disabled checked /> Basic TypeORM and Redis support
-- <input type="checkbox" disabled /> Fix unit tests using CacheManager
-- <input type="checkbox" disabled /> Fix e2e test
-- <input type="checkbox" disabled /> Setup minimum coverage
-- <input type="checkbox" disabled /> Fix docker-composer Redis connection
-- <input type="checkbox" disabled /> Implement basic CRUD
-- <input type="checkbox" disabled /> Add OpenAPI/Swagger
-- <input type="checkbox" disabled /> Create architecture diagram
-- <input type="checkbox" disabled /> Create flow diagrams
+- &#9745; Basic TypeORM and Redis support
+- &#9744; Fix unit tests using CacheManager
+- &#9744; Fix e2e test
+- &#9744; Setup minimum coverage
+- &#9744; Fix docker-composer Redis connection
+- &#9744; Implement basic CRUD
+- &#9744; Add OpenAPI/Swagger
+- &#9744; Create architecture diagram
+- &#9744; Create flow diagrams
 
 ## License
 
