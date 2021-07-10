@@ -1,4 +1,5 @@
 import { mustBe, a, validate } from 'joi-decorator';
+import Crash from './common/helpers/crash';
 
 export class EnvironmentVariables {
   @mustBe(a.number().integer().min(1).max(65535).required())
@@ -20,12 +21,11 @@ export class EnvironmentVariables {
   RDS_DATABASE: string;
 
   constructor() {
-    Object.keys(process.env).forEach((key) => {
+    Object.keys(process.env).forEach((key: string) => {
       this[key] = process.env[key];
     });
-    validate(this, EnvironmentVariables, { allowUnknown: true }).catch((err) => {
-      console.error(JSON.stringify(err.details ? err.details : err));
-      process.exit(1);
+    validate(this, EnvironmentVariables, { allowUnknown: true }).catch((err: Error) => {
+      Crash.logAndExit(this.constructor.name, err, 1);
     });
   }
 }

@@ -3,11 +3,17 @@ import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { EnvironmentVariables } from './app.config';
 import { AppModule } from './app.module';
-import { Logger, PinoLogger } from 'nestjs-pino';
+import { Logger } from 'nestjs-pino';
+import Crash from './common/helpers/crash';
+import StaticLogger from './common/helpers/staticLogger';
+
+process.on('uncaughtException', (err) => {
+  Crash.logAndExit('UncaughtException', err, 1);
+});
 
 async function bootstrap(): Promise<void> {
   return NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: false }), {
-    logger: new Logger(new PinoLogger({}), {}),
+    logger: StaticLogger.getLogger(),
   })
     .then((app: NestFastifyApplication) => {
       app.useLogger(app.get(Logger));
@@ -15,8 +21,7 @@ async function bootstrap(): Promise<void> {
       return app.listen(config.get('HTTP_PORT'), '0.0.0.0');
     })
     .catch((err) => {
-      console.error(JSON.stringify(err.details ? err.details : err));
-      process.exit(1);
+      Crash.logAndExit('bootstrap', err, 1);
     });
 }
 bootstrap();
