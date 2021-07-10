@@ -3,9 +3,13 @@
 .git
 .gitignore
 .husky
+*.spec.ts
+*.test.ts
 build
+coverage
 dist
 docker-compose.yml
 Dockerfile
 node_modules
 README.md
+test
