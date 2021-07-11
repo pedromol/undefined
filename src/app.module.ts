@@ -48,8 +48,8 @@ import Crash from './common/helpers/crash';
             Crash.logAndExit('CacheModule', options);
           } else {
             StaticLogger.getLogger().error(options, undefined, 'CacheModule');
-            return options.attempt * 1000;
           }
+          return options.attempt * 1000;
         },
       }),
     }),
