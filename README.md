@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/pedromol/undefined" target="blank"><img src="https://mol.net.br/undefined.svg" width="200" alt="Undefined Logo" /></a>
+  <a href="https://github.com/pedromol/undefined" target="blank"><img src="https://mol.net.br/undefined.svg" width="320" alt="Undefined Logo" /></a>
 </p>
 
 
