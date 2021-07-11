@@ -1,8 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-<p align="center">
-  [Pending custom logo]
+  <a href="https://github.com/pedromol/undefined" target="blank"><img src="https://mol.net.br/undefined.svg" width="200" alt="Undefined Logo" /></a>
 </p>
 
 
