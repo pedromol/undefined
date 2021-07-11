@@ -1,5 +1,6 @@
 import { CacheModule } from '@nestjs/common';
-import { HealthCheckService } from '@nestjs/terminus';
+import { HealthCheckService, TypeOrmHealthIndicator } from '@nestjs/terminus';
+import { HealthCheckExecutor } from '@nestjs/terminus/dist/health-check/health-check-executor.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { HealthController } from './health.controller';
 import { HealthService } from './health.service';
@@ -9,8 +10,9 @@ describe('HealthController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CacheModule.register(), HealthService, HealthCheckService],
+      imports: [CacheModule.register()],
       controllers: [HealthController],
+      providers: [HealthService, HealthCheckService, HealthCheckExecutor, TypeOrmHealthIndicator],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);
