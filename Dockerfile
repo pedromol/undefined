@@ -3,7 +3,7 @@ ADD . /appBuild
 WORKDIR /appBuild
 RUN yarn install --ignore-scripts && \
     yarn build && \
-    npm prune --production
+    yarn run prune
 
 FROM node:14-alpine
 WORKDIR /app
