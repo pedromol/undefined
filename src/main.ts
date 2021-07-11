@@ -7,9 +7,8 @@ import { Logger } from 'nestjs-pino';
 import Crash from './common/helpers/crash';
 import StaticLogger from './common/helpers/staticLogger';
 
-process.on('uncaughtException', (err) => {
-  Crash.logAndExit('UncaughtException', err);
-});
+process.on('uncaughtException', (err: Error) => Crash.logAndExit('UncaughtException', err));
+process.on('unhandledRejection', (err: Error) => Crash.logAndExit('UnhandledRejection', err));
 
 async function bootstrap(): Promise<void> {
   return NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: false }), {
