@@ -2,9 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-import { FastifyAdapter } from '@nestjs/platform-fastify';
 
-describe('AppController (e2e)', () => {
+describe('HealthController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -12,11 +11,20 @@ describe('AppController (e2e)', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication(new FastifyAdapter());
+    app = moduleFixture.createNestApplication();
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200).expect('Hello World!');
+  it('/health (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/health')
+      .expect(200)
+      .expect(
+        '{"status":"ok","info":{"database":{"status":"up"},"redis":{"status":"up"}},"error":{},"details":{"database":{"status":"up"},"redis":{"status":"up"}}}',
+      );
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

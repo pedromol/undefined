@@ -49,7 +49,7 @@ $ yarn test:cov
 - &#9745; Basic TypeORM and Redis support
 - &#9745; Fix docker-composer Redis connection
 - &#9745; Fix unit tests using CacheManager
-- &#9744; Fix e2e test
+- &#9745; Fix e2e test
 - &#9744; Setup minimum coverage
 - &#9744; Implement basic CRUD
 - &#9744; Add OpenAPI/Swagger
