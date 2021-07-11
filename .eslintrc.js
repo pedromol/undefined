@@ -38,6 +38,8 @@ module.exports = {
     'no-var': 'error',
     'prefer-const': 'error',
     'prefer-template': 'error',
+    'prettier/prettier': 'error',
     'require-atomic-updates': 'error',
+    'semi': ['error', 'always'],
   },
 };
