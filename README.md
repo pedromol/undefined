@@ -53,8 +53,8 @@ $ yarn test:cov
 - &#9745; Setup minimum coverage
 - &#9745; Implement basic CRUD
 - &#9745; Add OpenAPI/Swagger
-- &#9744; Create architecture diagram
-- &#9744; Create flow diagrams
+- &#9745; Create architecture diagram
+- &#9745; Create flow diagrams
 
 ## License
 

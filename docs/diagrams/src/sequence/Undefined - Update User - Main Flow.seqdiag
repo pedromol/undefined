@@ -1,0 +1,8 @@
+title Undefined - Update User - Main Flow
+
+Integration->+Undefined: PATCH userId, {user}
+Undefined->+MySQL: Update userId, {user}
+MySQL->-Undefined: OK
+Undefined->+MySQL: Select userId
+MySQL->-Undefined: user
+Undefined->-Integration: user

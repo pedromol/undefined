@@ -1,0 +1,6 @@
+title Undefined - Find User - Main Flow
+
+Integration->+Undefined: GET userId
+Undefined->+MySQL: Select userId
+MySQL->-Undefined: user
+Undefined->-Integration: user

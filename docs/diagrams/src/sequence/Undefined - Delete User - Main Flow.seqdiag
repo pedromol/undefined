@@ -1,0 +1,8 @@
+title Undefined - Delete User - Main Flow
+
+Integration->+Undefined: DELETE userId
+Undefined->+MySQL: Select userId
+MySQL->-Undefined: user
+Undefined->+MySQL: Delete userId
+MySQL->-Undefined: OK
+Undefined->-Integration: user

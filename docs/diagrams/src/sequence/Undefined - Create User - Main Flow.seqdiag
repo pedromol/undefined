@@ -1,0 +1,6 @@
+title Undefined - Create User - Main Flow
+
+Integration->+Undefined: POST {user}
+Undefined->+MySQL: Insert {user}
+MySQL->-Undefined: OK
+Undefined->-Integration: user

@@ -1,0 +1,6 @@
+title Undefined - List User - Main Flow
+
+Integration->+Undefined: GET
+Undefined->+MySQL: Select users
+MySQL->-Undefined: users
+Undefined->-Integration: users

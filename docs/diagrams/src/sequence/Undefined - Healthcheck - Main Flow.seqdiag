@@ -1,0 +1,10 @@
+title Undefined - Healthcheck - Main Flow
+
+Integration->+Undefined: GET health
+Undefined->+MySQL: SELECT 1
+Undefined->+Redis: Set generated Key
+Redis->-Undefined: OK
+MySQL->-Undefined: OK
+Undefined->+Redis: Get generated Key
+Redis->-Undefined: OK
+Undefined->-Integration: OK
