@@ -51,7 +51,7 @@ $ yarn test:cov
 - &#9745; Fix unit tests using CacheManager
 - &#9745; Fix e2e test
 - &#9745; Setup minimum coverage
-- &#9744; Implement basic CRUD
+- &#9745; Implement basic CRUD
 - &#9744; Add OpenAPI/Swagger
 - &#9744; Create architecture diagram
 - &#9744; Create flow diagrams

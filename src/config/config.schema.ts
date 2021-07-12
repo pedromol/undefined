@@ -1,5 +1,5 @@
 import { mustBe, a, validate } from 'joi-decorator';
-import Crash from './common/helpers/crash';
+import Crash from '../common/helpers/crash';
 
 export class EnvironmentVariables {
   @mustBe(a.number().integer().min(1).max(65535).required())

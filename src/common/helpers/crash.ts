@@ -1,4 +1,4 @@
-import StaticLogger from './staticLogger';
+import StaticLogger from '../../logger/logger.static';
 
 export default class Crash {
   static logAndExit(context: string, err: Error, exitCode = 1): void {
