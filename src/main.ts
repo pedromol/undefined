@@ -9,6 +9,7 @@ import StaticLogger from './logger/logger.static';
 import { VersioningType } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { readFileSync } from 'fs';
+import { ClusterService } from './cluster/cluster.service';
 
 process.on('uncaughtException', (err: Error) => Crash.logAndExit('UncaughtException', err));
 process.on('unhandledRejection', (err: Error) => Crash.logAndExit('UnhandledRejection', err));
@@ -37,4 +38,4 @@ async function bootstrap(): Promise<void> {
       Crash.logAndExit('bootstrap', err);
     });
 }
-bootstrap();
+ClusterService.createCluster(bootstrap);
