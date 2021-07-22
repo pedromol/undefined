@@ -2,38 +2,44 @@ import { mustBe, a, validate } from 'joi-decorator';
 import Crash from '../common/helpers/crash';
 
 export class EnvironmentVariables {
-  @mustBe(a.number().integer().min(1).max(65535).required())
-  HTTP_PORT = 3000;
-
-  @mustBe(a.string().required())
-  RDS_HOST: string;
-
-  @mustBe(a.number().integer().min(1).max(65535).required())
-  RDS_PORT = 3306;
-
-  @mustBe(a.string().required())
-  RDS_USERNAME: string;
-
-  @mustBe(a.string().required())
-  RDS_PASSWORD: string;
-
-  @mustBe(a.string().required())
-  RDS_DATABASE = 'undefined';
-
-  @mustBe(a.string().required())
+  @mustBe(a.string().case('lower').required())
   NODE_ENV: string;
 
+  @mustBe(a.number().integer().min(1).max(65535).default(3000).required())
+  HTTP_PORT: number;
+
+  @mustBe(a.boolean().required())
+  MYSQL_ENABLED: boolean;
+
+  @mustBe(a.string().hostname().required())
+  MYSQL_HOST: string;
+
+  @mustBe(a.number().integer().min(1).max(65535).default(3306).required())
+  MYSQL_PORT: number;
+
   @mustBe(a.string().required())
+  MYSQL_USERNAME: string;
+
+  @mustBe(a.string().required())
+  MYSQL_PASSWORD: string;
+
+  @mustBe(a.string().required())
+  MYSQL_DATABASE: string;
+
+  @mustBe(a.boolean().required())
+  REDIS_ENABLED: boolean;
+
+  @mustBe(a.string().hostname().required())
   REDIS_HOST: string;
 
-  @mustBe(a.number().integer().min(1).max(65535).required())
-  REDIS_PORT = 6379;
+  @mustBe(a.number().integer().min(1).max(65535).default(6379).required())
+  REDIS_PORT: number;
 
-  @mustBe(a.string().required())
-  ENABLE_OPENAPI = 'false';
+  @mustBe(a.boolean().required())
+  OPENAPI_ENABLED: boolean;
 
-  @mustBe(a.string().required())
-  USE_CLUSTER = 'false';
+  @mustBe(a.boolean().required())
+  CLUSTER_ENABLED: boolean;
 
   constructor() {
     Object.keys(process.env).forEach((key: string) => {

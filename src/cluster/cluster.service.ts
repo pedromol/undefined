@@ -11,7 +11,7 @@ export class ClusterService {
   private cluster: NativeCluster.Cluster = NativeCluster as unknown as NativeCluster.Cluster;
 
   start(callback): void {
-    if (this.configService.get('USE_CLUSTER')?.toLowerCase() === 'true') {
+    if (this.configService.get('CLUSTER_ENABLED')?.toLowerCase() === 'true') {
       if (this.cluster.isMaster) {
         this.logger.log(`Master server started on ${process.pid}`, 'ClusterService');
 

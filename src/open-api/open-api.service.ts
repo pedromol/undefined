@@ -8,7 +8,7 @@ export class OpenApiService {
   constructor(private configService: ConfigService) {}
 
   public start(app: INestApplication): void {
-    if (this.configService.get('ENABLE_OPENAPI')?.toLowerCase() === 'true') {
+    if (this.configService.get('OPENAPI_ENABLED')?.toLowerCase() === 'true') {
       const packageJson = JSON.parse(readFileSync('package.json').toString());
       const openApiConfig = new DocumentBuilder()
         .setTitle(packageJson.name)

@@ -9,12 +9,16 @@ services:
       - "3000:3000/tcp"
     environment:
       NODE_ENV: "development"
-      RDS_HOST: "db"
-      RDS_USERNAME: "root"
-      RDS_PASSWORD: "localPassword"
+      HTTP_PORT: "3000"
+      MYSQL_ENABLED: "true"
+      MYSQL_HOST: "db"
+      MYSQL_USERNAME: "root"
+      MYSQL_PASSWORD: "localPassword"
+      REDIS_ENABLED: "true"
       REDIS_HOST: "redis"
-      ENABLE_OPENAPI: "true"
-      USE_CLUSTER: "false"
+      REDIS_PORT: "6379"
+      OPENAPI_ENABLED: "true"
+      CLUSTER_ENABLED: "false"
     restart: unless-stopped
 
   db:
