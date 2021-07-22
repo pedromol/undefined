@@ -14,6 +14,7 @@ services:
       RDS_PASSWORD: "localPassword"
       REDIS_HOST: "redis"
       ENABLE_OPENAPI: "true"
+      USE_CLUSTER: "false"
     restart: unless-stopped
 
   db:

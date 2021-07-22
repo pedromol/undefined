@@ -32,6 +32,9 @@ export class EnvironmentVariables {
   @mustBe(a.string().required())
   ENABLE_OPENAPI = 'false';
 
+  @mustBe(a.string().required())
+  USE_CLUSTER = 'false';
+
   constructor() {
     Object.keys(process.env).forEach((key: string) => {
       this[key] = process.env[key];

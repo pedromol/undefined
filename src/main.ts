@@ -25,10 +25,10 @@ async function bootstrap(): Promise<void> {
 
       app.get(OpenApiService).start(app);
 
-      return app.listen(config.get('HTTP_PORT'), '0.0.0.0');
+      return app.get(ClusterService).start(() => app.listen(config.get('HTTP_PORT'), '0.0.0.0'));
     })
     .catch((err) => {
       Crash.logAndExit('bootstrap', err);
     });
 }
-ClusterService.createCluster(bootstrap);
+bootstrap();
