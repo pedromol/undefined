@@ -13,6 +13,7 @@ services:
       RDS_USERNAME: "root"
       RDS_PASSWORD: "localPassword"
       REDIS_HOST: "redis"
+      ENABLE_OPENAPI: "true"
     restart: unless-stopped
 
   db:

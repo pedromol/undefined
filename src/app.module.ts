@@ -5,9 +5,9 @@ import { CacheModule } from './cache/cache.module';
 import { OrmModule } from './orm/orm.module';
 import { LoggerModule } from './logger/logger.module';
 import { ConfigModule } from './config/config.module';
+import { OpenApiModule } from './open-api/open-api.module';
 
 @Module({
-  imports: [ConfigModule, CacheModule, LoggerModule, OrmModule, HealthModule, UserModule],
-  exports: [ConfigModule, CacheModule, LoggerModule, OrmModule],
+  imports: [ConfigModule, CacheModule, LoggerModule, OrmModule, HealthModule, UserModule, OpenApiModule],
 })
 export class AppModule {}

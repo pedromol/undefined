@@ -29,6 +29,9 @@ export class EnvironmentVariables {
   @mustBe(a.number().integer().min(1).max(65535).required())
   REDIS_PORT = 6379;
 
+  @mustBe(a.string().required())
+  ENABLE_OPENAPI = 'false';
+
   constructor() {
     Object.keys(process.env).forEach((key: string) => {
       this[key] = process.env[key];
