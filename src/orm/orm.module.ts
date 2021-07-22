@@ -9,7 +9,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => {
-        if (configService.get('MYSQL_HOST') === 'true') {
+        if (configService.get('MYSQL_ENABLED') === 'true') {
           return {
             type: 'mysql',
             host: configService.get('MYSQL_HOST'),
