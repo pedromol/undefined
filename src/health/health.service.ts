@@ -24,7 +24,7 @@ export class HealthService {
 
   private compareCache(value: string): Promise<HealthIndicatorResult> {
     return Promise.resolve({
-      redis: { status: value === this.localKey ? 'up' : 'down' },
+      cache: { status: value === this.localKey ? 'up' : 'down' },
     });
   }
 }

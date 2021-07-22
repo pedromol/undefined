@@ -18,7 +18,7 @@ services:
       REDIS_HOST: "redis"
       REDIS_PORT: "6379"
       OPENAPI_ENABLED: "true"
-      CLUSTER_ENABLED: "false"
+      CLUSTER_ENABLED: "true"
     restart: unless-stopped
 
   db:

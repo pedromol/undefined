@@ -12,7 +12,7 @@ import Crash from 'src/common/helpers/crash';
       imports: [ConfigModule, LoggerModule],
       inject: [ConfigService, PinoLogger],
       useFactory: (configService: ConfigService, loggerService: LoggerService) => ({
-        store: redisStore,
+        store: configService.get('REDIS_ENABLED') === 'true' ? redisStore : 'memory',
         host: configService.get('REDIS_HOST'),
         port: configService.get('REDIS_PORT'),
         ttl: 3,
