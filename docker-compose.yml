@@ -12,13 +12,21 @@ services:
       HTTP_PORT: "3000"
       MYSQL_ENABLED: "true"
       MYSQL_HOST: "db"
+      MYSQL_PORT: "3306"
       MYSQL_USERNAME: "root"
       MYSQL_PASSWORD: "localPassword"
+      MYSQL_DATABASE: "undefined"
       REDIS_ENABLED: "true"
       REDIS_HOST: "redis"
       REDIS_PORT: "6379"
       OPENAPI_ENABLED: "true"
       CLUSTER_ENABLED: "true"
+      NEW_RELIC_APP_NAME: "undefined"
+      #NEW_RELIC_LICENSE_KEY: "YOUR_LICENSE_KEY"
+      NEW_RELIC_NO_CONFIG_FILE: "true"
+      NEW_RELIC_FEATURE_FLAG_FASTIFY_INSTRUMENTATION: "true"
+      NEW_RELIC_LOG_LEVEL: "error"
+      NEW_RELIC_LOG: "stdout"
     restart: unless-stopped
 
   db:

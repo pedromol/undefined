@@ -1,3 +1,7 @@
+if (process.env['NEW_RELIC_APP_NAME'] && process.env['NEW_RELIC_LICENSE_KEY']) {
+  require('newrelic');
+}
+
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -9,12 +13,17 @@ import StaticLogger from './logger/logger.static';
 import { VersioningType } from '@nestjs/common';
 import { ClusterService } from './cluster/cluster.service';
 import { OpenApiService } from './open-api/open-api.service';
+import * as fastify from 'fastify';
 
 process.on('uncaughtException', (err: Error) => Crash.logAndExit('UncaughtException', err));
 process.on('unhandledRejection', (err: Error) => Crash.logAndExit('UnhandledRejection', err));
 
 async function bootstrap(): Promise<void> {
-  return NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: false }), {
+  const fastifyInstance = fastify.hasOwnProperty('__NR_instrumented')
+    ? fastify['__NR_original']({ logger: false })
+    : fastify.fastify({ logger: false });
+
+  return NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(fastifyInstance), {
     logger: StaticLogger.getLogger(),
   })
     .then((app: NestFastifyApplication) => {
@@ -31,4 +40,5 @@ async function bootstrap(): Promise<void> {
       Crash.logAndExit('bootstrap', err);
     });
 }
+
 bootstrap();
