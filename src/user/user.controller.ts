@@ -27,6 +27,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @ApiResponse({ status: 201, description: 'The record has been successfully created.' })
+  @ApiResponse({ status: 400, description: 'The user information is invalid or missing a required field.' })
   @Post()
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);
@@ -46,6 +47,7 @@ export class UserController {
   }
 
   @ApiResponse({ status: 200, description: 'The record has been successfully updated.' })
+  @ApiResponse({ status: 400, description: 'The user information is invalid or missing a required field.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
   @Put(':id')
   replace(@Param('id') id: string, @Body() createUserDto: CreateUserDto): Promise<User> {

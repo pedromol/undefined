@@ -29,7 +29,12 @@ async function bootstrap(): Promise<void> {
     .then((app: NestFastifyApplication) => {
       app.useLogger(app.get(Logger));
       app.enableVersioning({ type: VersioningType.URI });
-      app.useGlobalPipes(new ValidationPipe());
+      app.useGlobalPipes(
+        new ValidationPipe({
+          whitelist: true,
+          forbidNonWhitelisted: true,
+        }),
+      );
 
       const config: ConfigService<EnvironmentVariables> = app.get(ConfigService);
 
