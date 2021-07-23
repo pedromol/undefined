@@ -42,6 +42,8 @@
     "@nestjs/typeorm": "^8.0.1",
     "cache-manager": "^3.4.4",
     "cache-manager-redis-store": "^2.0.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "fastify": "^3.19.2",
     "fastify-swagger": "^4.8.3",
     "hyperid": "^2.3.1",

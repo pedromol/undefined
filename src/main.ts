@@ -10,7 +10,7 @@ import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
 import Crash from './common/helpers/crash';
 import StaticLogger from './logger/logger.static';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ClusterService } from './cluster/cluster.service';
 import { OpenApiService } from './open-api/open-api.service';
 import * as fastify from 'fastify';
@@ -29,6 +29,7 @@ async function bootstrap(): Promise<void> {
     .then((app: NestFastifyApplication) => {
       app.useLogger(app.get(Logger));
       app.enableVersioning({ type: VersioningType.URI });
+      app.useGlobalPipes(new ValidationPipe());
 
       const config: ConfigService<EnvironmentVariables> = app.get(ConfigService);
 
