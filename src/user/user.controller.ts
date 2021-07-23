@@ -4,9 +4,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { ApiResponse } from '@nestjs/swagger';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found-interceptor';
 
-@Controller('user')
+@Controller({
+  path: 'user',
+  version: '1',
+})
 @UseInterceptors(CacheInterceptor)
+@UseInterceptors(NotFoundInterceptor)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -22,19 +27,22 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @ApiResponse({ status: 200, description: 'Single user records.' })
+  @ApiResponse({ status: 200, description: 'Single user record.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
     return this.userService.findOne(+id);
   }
 
   @ApiResponse({ status: 200, description: 'The record has been successfully updated.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     return this.userService.update(+id, updateUserDto);
   }
 
   @ApiResponse({ status: 200, description: 'The record has been successfully deleted.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   @Delete(':id')
   remove(@Param('id') id: string): Promise<User> {
     return this.userService.remove(+id);

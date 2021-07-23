@@ -20,15 +20,18 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  findOne(id: number): Promise<User | undefined> {
     return this.userRepository.findOne(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  update(id: number, updateUserDto: UpdateUserDto): Promise<User | undefined> {
     return this.userRepository.update(id, updateUserDto).then(() => this.findOne(id));
   }
 
-  remove(id: number): Promise<User> {
-    return this.findOne(id).then((user) => this.userRepository.delete(id).then(() => user));
+  remove(id: number): Promise<User | undefined> {
+    return this.findOne(id).then((user) => {
+      if (user === undefined) return user;
+      return this.userRepository.delete(id).then(() => user);
+    });
   }
 }

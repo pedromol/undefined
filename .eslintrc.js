@@ -25,7 +25,6 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'error',
     '@typescript-eslint/no-useless-constructor': 'error',
     'block-scoped-var': 'error',
-    'class-methods-use-this': 'error',
     'consistent-return': 'error',
     'func-style': ['error', 'declaration'],
     'max-depth': 'error',

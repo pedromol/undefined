@@ -7,8 +7,19 @@ import { LoggerModule } from './logger/logger.module';
 import { ConfigModule } from './config/config.module';
 import { OpenApiModule } from './open-api/open-api.module';
 import { ClusterModule } from './cluster/cluster.module';
+import { InterceptorsModule } from './common/interceptors/interceptors.module';
 
 @Module({
-  imports: [ConfigModule, CacheModule, LoggerModule, OrmModule, HealthModule, UserModule, OpenApiModule, ClusterModule],
+  imports: [
+    ConfigModule,
+    CacheModule,
+    LoggerModule,
+    OrmModule,
+    HealthModule,
+    UserModule,
+    OpenApiModule,
+    ClusterModule,
+    InterceptorsModule,
+  ],
 })
 export class AppModule {}
