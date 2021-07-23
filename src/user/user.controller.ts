@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, CacheInterceptor, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  CacheInterceptor,
+  UseInterceptors,
+  Put,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -32,6 +43,13 @@ export class UserController {
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
     return this.userService.findOne(+id);
+  }
+
+  @ApiResponse({ status: 200, description: 'The record has been successfully updated.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
+  @Put(':id')
+  replace(@Param('id') id: string, @Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.userService.update(+id, createUserDto);
   }
 
   @ApiResponse({ status: 200, description: 'The record has been successfully updated.' })
