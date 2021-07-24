@@ -1,23 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional } from 'class-validator';
+import { IsNotEmpty, ValidateIf } from 'class-validator';
 import { CreateUserDto } from './create-user.dto';
 
 export class UpdateUserDto extends CreateUserDto {
   @ApiProperty({
     description: 'User first name',
   })
-  @IsOptional()
+  @ValidateIf((self) => !Object.keys(self).length)
+  @IsNotEmpty()
   firstName: string;
 
   @ApiProperty({
     description: 'User last name',
   })
-  @IsOptional()
+  @ValidateIf((self) => !Object.keys(self).length)
+  @IsNotEmpty()
   lastName: string;
 
   @ApiProperty({
     description: 'Is user active?',
   })
-  @IsOptional()
+  @ValidateIf((self) => !Object.keys(self).length)
+  @IsNotEmpty()
   isActive: boolean;
 }
