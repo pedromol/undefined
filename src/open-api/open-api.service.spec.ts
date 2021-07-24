@@ -1,3 +1,4 @@
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { OpenApiService } from './open-api.service';
 
@@ -6,7 +7,8 @@ describe('OpenApiService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [OpenApiService],
+      imports: [ConfigModule],
+      providers: [ConfigService, OpenApiService],
     }).compile();
 
     service = module.get<OpenApiService>(OpenApiService);

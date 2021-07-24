@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
-import { ConfigModule } from 'src/config/config.module';
-import { LoggerModule } from 'src/logger/logger.module';
+import { ConfigModule } from '../config/config.module';
+import { LoggerModule } from '../logger/logger.module';
 import { ClusterService } from './cluster.service';
 
 @Module({

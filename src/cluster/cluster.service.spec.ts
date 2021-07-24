@@ -1,4 +1,7 @@
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { Logger } from 'nestjs-pino';
+import { LoggerModule } from '../logger/logger.module';
 import { ClusterService } from './cluster.service';
 
 describe('ClusterService', () => {
@@ -6,7 +9,8 @@ describe('ClusterService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ClusterService],
+      imports: [ConfigModule, LoggerModule],
+      providers: [ConfigService, ClusterService, Logger],
     }).compile();
 
     service = module.get<ClusterService>(ClusterService);

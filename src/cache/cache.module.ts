@@ -2,9 +2,9 @@ import { LoggerService, Module } from '@nestjs/common';
 import * as Nest from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as redisStore from 'cache-manager-redis-store';
-import { LoggerModule } from 'src/logger/logger.module';
+import { LoggerModule } from '../logger/logger.module';
 import { PinoLogger } from 'nestjs-pino';
-import Crash from 'src/common/helpers/crash';
+import Crash from '../common/helpers/crash';
 
 @Module({
   imports: [

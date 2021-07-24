@@ -15,7 +15,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { ApiResponse } from '@nestjs/swagger';
-import { NotFoundInterceptor } from 'src/common/interceptors/not-found-interceptor';
+import { NotFoundInterceptor } from '../common/interceptors/not-found-interceptor';
 
 @Controller({
   path: 'user',

@@ -1,6 +1,7 @@
 import { CacheModule } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { NotFoundInterceptor } from '../common/interceptors/not-found-interceptor';
 import { User } from './entities/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
@@ -18,9 +19,10 @@ describe('UserController', () => {
         }),
         TypeOrmModule.forFeature([User]),
         CacheModule.register({}),
+        NotFoundInterceptor,
       ],
       controllers: [UserController],
-      providers: [UserService],
+      providers: [UserService, NotFoundInterceptor],
     }).compile();
 
     controller = module.get<UserController>(UserController);

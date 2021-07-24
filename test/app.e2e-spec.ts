@@ -20,7 +20,7 @@ describe('HealthController (e2e)', () => {
       .get('/health')
       .expect(200)
       .expect(
-        '{"status":"ok","info":{"database":{"status":"up"},"redis":{"status":"up"}},"error":{},"details":{"database":{"status":"up"},"redis":{"status":"up"}}}',
+        '{"status":"ok","info":{"database":{"status":"up"},"cache":{"status":"up"}},"error":{},"details":{"database":{"status":"up"},"cache":{"status":"up"}}}',
       );
   });
 
