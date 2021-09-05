@@ -45,20 +45,9 @@ $ yarn test:e2e
 $ yarn test:cov
 ```
 
-## To Do
-- &#9745; Basic TypeORM and Redis support
-- &#9745; Fix docker-composer Redis connection
-- &#9745; Fix unit tests using CacheManager
-- &#9745; Fix e2e test
-- &#9745; Setup minimum coverage
-- &#9745; Implement basic CRUD
-- &#9745; Add OpenAPI/Swagger
-- &#9745; Create architecture diagram
-- &#9745; Create flow diagrams
-
 ## License
 
-Undefined is by inheritance [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).
 
 ## Support Nest
   <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
