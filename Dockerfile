@@ -1,11 +1,11 @@
-FROM node:14-alpine as build
+FROM node:16-alpine as build
 ADD . /appBuild
 WORKDIR /appBuild
 RUN yarn install --ignore-scripts && \
     yarn build && \
     yarn run prune
 
-FROM node:14-alpine
+FROM node:16-alpine
 WORKDIR /app
 COPY --from=build /appBuild/dist ./dist
 COPY --from=build /appBuild/node_modules ./node_modules
