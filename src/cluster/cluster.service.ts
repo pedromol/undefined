@@ -12,7 +12,7 @@ export class ClusterService {
 
   start(callback): void {
     if (this.configService.get('CLUSTER_ENABLED')?.toLowerCase() === 'true') {
-      if (this.cluster.isMaster) {
+      if (this.cluster.isPrimary) {
         this.logger.log(`Master server started on ${process.pid}`, 'ClusterService');
 
         for (let i = 0; i < os.cpus().length; i++) {
